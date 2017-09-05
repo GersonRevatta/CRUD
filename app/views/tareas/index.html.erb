@@ -1,0 +1,34 @@
+<center>
+   <h3>Api </h3>
+   <%= link_to 'Api',  :action => :apiReport  %>
+ </center>
+<h2> Lista de tareas </h2>
+<p> <%= link_to "Crear nueva tarea", new_tarea_path %> </p>   
+<ul>
+   <% @tareas.each do |t| %>
+   <li>
+      <h3> <%= t.titulo %> </h3>
+      <p>
+      <%= link_to "Ver", t %>
+         |
+         <%= link_to "Editar", edit_tarea_path(t) %>
+         |
+         <%= link_to "Eliminar", t, :confirm => "Seguro desea eliminar esta tarea?", :method => :delete %>
+         
+      </p>
+   </li>
+   <% end %>
+</ul>
+   <h2> Últimos comentarios </h2>
+<ul style="list-style: none; padding: 0px;">
+   <% @ultimos_comentarios.each do |comentario| %>
+      <li>
+         <p> <%= comentario.mensaje[0..50] %>... </p>
+         <p> Comentario en <%= link_to comentario.titulo, tarea_path(comentario.id) %> </p>
+         <hr />
+      </li>
+   <% end %>
+</ul>
+
+
+<br>

@@ -1,0 +1,20 @@
+<%= form_for([@tarea, @comentario]) do |f| %>
+   <% if @comentario.errors.any? %>
+      <ul>
+         <% @comentario.errors.each do |atributo, mensaje| %>
+         <li> <%= mensaje %> </li>
+         <% end %>
+      </ul>
+   <% end %>
+   <%= f.text_area :mensaje, {:value => @mensaje} %>
+   <br />
+   <%= f.submit "Enviar" %> <%= link_to "Volver", @tarea %>
+<% end %>
+<h3>Errores</h3>
+<% if @comentario.errors.any? %>
+   <ul>
+      <% @comentario.errors.each do |atributo, mensaje| %>
+      <li> <%= mensaje %> </li>
+      <% end %>
+   </ul>
+<% end %>

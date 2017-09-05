@@ -1,0 +1,30 @@
+<%= form_for @tarea do |f| %> 
+   <p> 
+      <%= f.label :titulo, "Título" %>
+      <br />
+      <%= f.text_field :titulo, {:value => @titulo} %>
+   </p>
+   <p> 
+      <%= f.label :descripcion, "Descripción" %>
+      <br />
+      <%= f.text_area :descripcion, {:value => @descripcion} %>
+   </p>
+   <p>
+      <%= f.label :prioridad, "Prioridad" %>
+      <br />
+      <%= f.text_field :prioridad, {:value => @prioridad, :size => "1", :maxlength => 1} %>
+   </p>
+   <p>
+      <%= f.submit "Enviar" %> <%= link_to "Cancelar", tareas_path %>
+   </p>
+<% end %>
+
+<h3>Errores </h3>
+<!--  -->
+<% if @tarea.errors.any? %>
+   <ul>
+      <% @tarea.errors.each do |atributo, mensaje| %>
+      <li> <%= mensaje %> </li>
+      <% end %>
+   </ul>
+<% end %>

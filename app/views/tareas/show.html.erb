@@ -1,0 +1,19 @@
+<h2> <%= @tarea.titulo %> </h2>
+<div> 
+   <%= simple_format @tarea.descripcion %>
+</div>
+<p> <%= link_to "Agregar un comentario", new_tarea_comentario_path(@tarea) %> | <%= link_to "Volver", tareas_path %> </p>
+<hr />
+<ul style="list-style: none; padding: 0px;">
+   <% @comentarios.each do |comentario| %>
+   <li>
+      <div> <%= simple_format comentario.mensaje %> </div>
+      <p> 
+         <%= link_to "Editar", edit_tarea_comentario_path(@tarea, comentario) %>
+         | 
+         <%= link_to "Eliminar", tarea_comentario_path(@tarea, comentario), :confirm => "Seguro desea eliminar este comentario?", :method => :delete %> 
+         </p>
+         <hr />
+   </li>
+ <% end %>
+</ul>

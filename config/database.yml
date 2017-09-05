@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: deviseA_development
+  database: de_development
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: deviseA_test
+  database: de_test
 
 production:
   <<: *default
-  database: deviseA_production
-  username: deviseA
+  database: de_production
+  username: gerson
   password: <%= ENV['DEVISEA_DATABASE_PASSWORD'] %>

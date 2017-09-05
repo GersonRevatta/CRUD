@@ -1,22 +1,26 @@
 
-
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: de_development
+  database: cr_development
+
+  # The password associated with the postgres role (username).
+  #password:
+
+  # Connect on a TCP socket. Omitted by default since the client uses a
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: de_test
+  database: cr_test
 
+#
 production:
   <<: *default
-  database: de_production
+  database: cr_production
   username: gerson
-  password: <%= ENV['DEVISEA_DATABASE_PASSWORD'] %>
+  password: <%= ENV['ALGO_DATABASE_PASSWORD'] %>

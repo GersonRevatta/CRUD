@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :tareas do
    resources :comentarios
   end
+  namespace :api do 
+      resources :tareas
+  end 
   root 'tareas#index'
 
   #put "tareas/finalizar"

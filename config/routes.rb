@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'comentarios/new'
-
-  get 'comentarios/create'
-
-  get 'comentarios/edit'
-
-  get 'comentarios/update'
-
-  get 'comentarios/destroy'
 
   get 'tareas/apiReport'
   #resources :tareas
@@ -16,7 +7,7 @@ Rails.application.routes.draw do
    resources :comentarios
   end
   namespace :api do 
-      resources :tareas
+    resources :tareas
   end 
   root 'tareas#index'
 

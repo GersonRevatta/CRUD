@@ -63,6 +63,7 @@ class TareasController < ApplicationController
       redirect_to tareas_path, :notice => "La tarea NO ha podido ser eliminada";
    end
   end
+  
   def finalizar
      @tarea = Tarea.find(params[:id]);
      @tarea.activo = false;

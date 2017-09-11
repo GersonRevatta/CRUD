@@ -1,11 +1,14 @@
 #class ApiController < ApplicationController 
 class Api::TareasController < ApplicationController
+
 #  before_action :set_user, only: [:apiRuby]
 
   def index
     posts =  Tarea.all 
     render json: posts
   end
+
+
 
   def show
     @tarea = (params[:id])
@@ -15,14 +18,14 @@ class Api::TareasController < ApplicationController
 
   def destroy
     @tarea = Tarea.find(params[:id])
-    if @tarea.destroy()
-      head :no_content, status: :ok
-    else
-      render json: @tarea.errors, status:  :unprocessable_entity
-    end
+    @tarea.destroy
+    render json: @tarea
+    
   end
+  
    def create
-     @tarea = Tarea.create(tareas_params)
+     @tarea = Tarea.new(tareas_params)
+     @tarea.save()
      render json: @tarea
    end
 
@@ -33,6 +36,6 @@ class Api::TareasController < ApplicationController
   end 
   private
     def tareas_params
-      params.require(:post).permit(:activo, :descripcion, :prioridad, :titulo)
+      params.permit(:activo, :descripcion, :prioridad, :titulo)
     end
 end

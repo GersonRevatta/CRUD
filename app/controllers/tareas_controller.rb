@@ -1,4 +1,4 @@
-class TareasController < ApplicationController
+class TareasController < ApplicationController  
   def index
       @tareas = Tarea.select("id, titulo, descripcion").where(:activo => true).order("id DESC");
       @ultimos_comentarios = Tarea.select("tareas.id, tareas.titulo, comentarios.mensaje").joins(:comentarios).order("comentarios.id DESC").limit(10);

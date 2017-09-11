@@ -39,6 +39,7 @@ class TareasController < ApplicationController
    @descripcion = @tarea.descripcion;
    @prioridad = @tarea.prioridad;
   end
+  
   def update
      @titulo = params[:tarea]["titulo"];
      @descripcion = params[:tarea]["descripcion"];

@@ -1,11 +1,12 @@
 class TareasController < ApplicationController  
   def index
-    @tareas = Tarea.select("id, titulo, descripcion").where(:activo => true).order("id DESC");
-    @ultimos_comentarios = Tarea.select("tareas.id, tareas.titulo, comentarios.mensaje").joins(:comentarios).order("comentarios.id DESC").limit(10);
+    @tareas = Tarea.all
   end
+  
   def new
     @tarea = Tarea.new();
   end
+
   def create
     @titulo = params[:tarea][:titulo];
     @descripcion = params[:tarea][:descripcion];
@@ -15,24 +16,26 @@ class TareasController < ApplicationController
        :descripcion => @descripcion,
        :prioridad => @prioridad,
        :activo => true
-    });
-   
+    }); 
     if @tarea.save()
       redirect_to tareas_path, :notice => "La tarea ha sido insertada";
     else
       render "new";
     end
   end
+
   def show
     @tarea = Tarea.find(params[:id]);
     @comentarios = Comentario.select("id, mensaje").where(:tarea_id => params[:id]);
   end
+
   def edit
     @tarea = Tarea.find(params[:id]);
     @titulo = @tarea.titulo;
     @descripcion = @tarea.descripcion;
     @prioridad = @tarea.prioridad;
   end
+
   def update
     @titulo = params[:tarea]["titulo"];
     @descripcion = params[:tarea]["descripcion"];
@@ -47,6 +50,7 @@ class TareasController < ApplicationController
        render "edit";
     end
   end
+
   def destroy
     @tarea = Tarea.find(params[:id]);
     if @tarea.destroy()
@@ -69,8 +73,11 @@ class TareasController < ApplicationController
    posts = Tarea.all 
    render json: {status: 'SUCCESS', message: 'Loaded all posts', data: posts}, status: :ok
   end
+
   private
+
   def tareas_params
     params.require(:post).permit(:activo, :descripcion, :prioridad, :titulo)
   end
+  
 end

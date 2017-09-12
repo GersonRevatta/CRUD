@@ -1,8 +1,8 @@
 class TareasController < ApplicationController  
   def index
     @tareas = Tarea.all
-    @ultimos_comentarios = Tarea.select("tareas.id, tareas.titulo, comentarios.mensaje").joins(:comentarios).order("comentarios.id DESC").limit(10);
   end
+  
   def new
     @tarea = Tarea.new();
   end
